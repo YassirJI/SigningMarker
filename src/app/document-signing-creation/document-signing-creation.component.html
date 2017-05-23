@@ -1,0 +1,68 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="panel panel-default">
+        <div class="panel-heading">Drage and drop elements into pdf</div>
+        <div class="panel-body">
+
+          <div class="form-group">
+            <label for="exampleInputFile">File input</label>
+            <input type="file" id='fileinput' (change)="fileSourceChanged($event)"/>
+            <p class="help-block">Example block-level help text here.</p>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-3">
+    <div class="panel panel-default">
+      <div class="panel-heading">Drage and drop elements into pdf</div>
+      <div class="panel-body">
+
+        <ul class="list-group">
+          <li class="list-group-item">
+            <input type="text" class="form-control draggable-input origin" placeholder="Drag this textBox into pdf"
+            draggable="true" 
+            (dragstart)="onDrag($event)"
+            (dragend)="onDragEnd($event)"/>  
+          </li>
+          <li class="list-group-item">  <button (click)="onSubmit()" class="btn btn-success" > Submit</button></li>
+          <li class="list-group-item">
+            <span width="80" height="80" class="origin"
+                draggable="true" 
+                (dragstart)="onDrag($event)"
+                (dragend)="onDragEnd($event)">
+                <svg width="80" height="80">
+                  <rect id="myrect" width="80" height="80" x="0" y="0" rx="15" ry="15" onclick="doRectClick()"
+                        style="fill:#009900;stroke-width:1;stroke:rgb(0,0,0)" />
+                  <text x="10" y="40" fill="white" font-size="15" onclick="doRectClick();">Click Me</text>
+                </svg>
+            </span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    
+  </div>
+  
+  <div class="col-md-9">
+    <div class="panel panel-primary">
+      <div class="panel-heading">Drage and drop elements into pdf</div>
+      <div class="panel-body dropZone" 
+                      style="position: relative"
+                      (drop)="onDrop($event)">
+
+        <pdf-viewer   [src]="fileSource"
+                      page="1"
+                      original-size="false"
+                      show-all="false"
+                      style="display: block;"
+                      (dragover)="onDragOver($event)">
+                      </pdf-viewer>
+  
+      </div>
+    </div>
+  </div>
+</div>
