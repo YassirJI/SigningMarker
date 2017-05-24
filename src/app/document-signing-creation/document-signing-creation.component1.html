@@ -1,0 +1,136 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="panel panel-default">
+        <div class="panel-heading">Drage and drop elements into pdf</div>
+        <div class="panel-body">
+
+          <div class="form-group">
+            <label for="exampleInputFile">File input</label>
+            <input type="file" id='fileinput' (change)="fileSourceChanged($event)"/>
+            <p class="help-block">Example block-level help text here.</p>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-3">
+    <div class="panel panel-default">
+      <div class="panel-heading">Drage and drop elements into pdf</div>
+      <div class="panel-body">
+
+        <ul id="components_sign_menu" class="list-unstyled">
+            <li>
+              <a class="signature-tool tool-button image-annotate-add img-replace draggable ui-draggable " href="#" id="liAddSign" rel="signature" 
+                    draggable="true" 
+                    (dragstart)="onDrag($event)"
+                    (dragend)="onDragEnd($event)">Signature Box</a> 
+            </li>
+            <li>
+                <a class="text-tool tool-button img-replace draggable ui-draggable" href="#" id="text_tool" rel="text"
+                    draggable="true" 
+                    (dragstart)="onDrag($event)"
+                    (dragend)="onDragEnd($event)">Text Box</a></li>
+            <li>
+                <a class="date-tool tool-button img-replace draggable ui-draggable" href="#" id="date_tool" rel="date"
+                    draggable="true" 
+                    (dragstart)="onDrag($event)"
+                    (dragend)="onDragEnd($event)">Date Box</a>
+            </li>
+        </ul>
+      </div>
+    </div>    
+</div>
+  
+
+<div class="col-md-9">
+       <div class="panel panel-primary">
+        <div class="panel-heading">
+            CMx E-Sign
+        </div>
+        <div class="panel-body dropZone" 
+                      style="position: relative"
+                      (drop)="onDrop($event)">
+
+                  <pdf-viewer   [src]="fileSource"
+                                page="1"
+                                original-size="false"
+                                show-all="false"
+                                style="display: block;"
+                                (dragover)="onDragOver($event)">
+                                </pdf-viewer>
+  
+     
+                  <div style="float: right; padding-top: 5px; padding-bottom: 5px">
+                      <input type="button" id="btnPopup" class="btn btn-success" value="Save" (click)="saveSign();" />
+                      <input type="button" id="btnView" class="btn btn-success" onclick="redirectToSign();" value="Send E-Sign" />
+                  </div>  
+        </div>
+    </div>
+  </div>
+</div>
+
+    <style>
+        #components_sign_menu ul {
+            list-style: none;
+        }
+
+        #components_sign_menu li {
+            margin: 5px 0;
+        }
+
+       #components_sign_menu li a.tool-button {
+          height:50px;
+          width:50px;
+          margin-left: 7px !important;
+          margin-top: 2px !important;
+          margin-bottom: 2px !important;
+          overflow: hidden;
+          box-shadow: 0 0px 20px 0px rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+          border: 2px solid #c6cac6!important;
+       }
+
+      #components_sign_menu li a.signature-tool {
+          background: transparent url(../../assets/signature-tag.png) no-repeat top left;
+          background-repeat:no-repeat;
+          background-position:center;
+          background-size: contain;
+      }
+      
+      #components_sign_menu li a.text-tool {
+          background: transparent url(../../assets/text-tag.png) no-repeat top left;
+          background-repeat:no-repeat;
+          background-position:center;
+          background-size: contain;
+      }
+
+      #components_sign_menu li a.date-tool {
+          background: transparent url(../../assets/calendar-tag.png) no-repeat top left;
+          background-repeat:no-repeat;
+          background-position:center;
+          background-size: contain;
+      }
+
+      #components_sign_menu li a:hover, #components_sign_menu li a:focus, #components_sign_menu li a:active {
+          box-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
+          background-color: #c6cac6;
+      }
+    
+      #components_menu li a.tool-button:hover {
+          background-position: 0 -37px;
+      }
+      
+      .draggable {
+           cursor: move;
+      }
+
+      .img-replace {
+          display: block;
+          text-indent: -3000px !important;
+          overflow: hidden;
+          border: none !important;
+          padding: 0 !important;
+          margin: 0 !important;
+      }
+    </style>
