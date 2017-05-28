@@ -70,6 +70,57 @@
     </div>
   </div>
 </div>
+<div class="modal fade" id="signatureModal" tabindex="-1" role="dialog" aria-labelledby="signatureModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="signatureModalLabel">Sign here</h4>
+                    </div>
+                    <div class="modal-body">
+                         <div class="container-fluid">
+                                <div id="divsignaturePad" style="z-index: 1500;">
+                                            <span>Confirm your name and your signature</span>
+                                            <div class="form-group">
+                                                <label for="fullName">Full name</label>
+                                                <input type="fullName" class="form-control" id="fullName" placeholder="Enter name" [(ngModel)]="activeTypedSignerName">
+                                            </div>
+                                            <ul class="nav nav-tabs">
+                                                <li class="active"><a href="#typeIt" data-toggle="tab">Type it</a></li>
+                                                <li><a href="#drawIt" data-toggle="tab">Draw it</a></li>
+                                            </ul>
+                                            <div class="tab-content ">
+                                                <div class="tab-pane active" id="typeIt">
+                                                    <span class="typeItDesc">
+                                                            Review your signature
+                                                    </span>
+                                                    <div class="wrapper typed unselected" id="divtypeName">
+                                                        {{activeTypedSignerName}}
+                                                    </div>
+                                                </div>
+                                                <div class="tab-pane" id="drawIt">
+                                                <div>
+                                                    <span class="drawItDesc">
+                                                        Draw your signature
+                                                    </span>
+                                                    <span class="clearButton"><a (click)="clearCanvasSignature()">Clear</a></span>
+                                                  </div>
+                                                  <div class="wrapper">
+                                                        <img width=300 height=100 />
+                                                        <canvas id="signature-pad" class="signature-pad" width=300 height=100></canvas>
+                                                   </div>
+                                                </div>
+                                            </div>
+                                    </div>
+                            </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="saveSignature()">Save</button>
+                    </div>
+            </div>
+        </div>
+</div>
 
     <style>
         #components_sign_menu ul {
@@ -133,4 +184,43 @@
           padding: 0 !important;
           margin: 0 !important;
       }
+
+
+
+.wrapper {
+  position: relative;
+  width: 300px;
+  height: 100px;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+#divsignaturePad img {
+  position: absolute;
+  left: 0;
+  top: 0;
+  background-color: #f9f9f9;
+  box-shadow: 0 0px 20px 0px rgba(185, 179, 179, 0.2), 0 6px 20px 0 rgba(128, 113, 113, 0.19);
+}
+
+.signature-pad {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width:300px;
+  height:100px;
+}
+
+.typed {
+    margin: 0;
+    padding: 0 5px;
+    text-align: center;
+    cursor: default;
+    color: #145394;
+    font: normal 3.5em/80px "kunstler script" ,Georgia,Times,serif;
+    background-color: #f9f9f9;
+    box-shadow: 0 0px 20px 0px rgba(185, 179, 179, 0.2), 0 6px 20px 0 rgba(128, 113, 113, 0.19);
+}
+
     </style>
